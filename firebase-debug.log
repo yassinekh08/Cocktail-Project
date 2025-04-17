@@ -1,0 +1,28 @@
+[debug] [2025-04-15T02:44:41.970Z] ----------------------------------------------------------------------
+[debug] [2025-04-15T02:44:41.972Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\YASSINE KHLIF\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create drinkapp-angular --display-name=DrinkApp
+[debug] [2025-04-15T02:44:41.972Z] CLI Version:   14.1.0
+[debug] [2025-04-15T02:44:41.972Z] Platform:      win32
+[debug] [2025-04-15T02:44:41.972Z] Node Version:  v20.11.0
+[debug] [2025-04-15T02:44:41.973Z] Time:          Tue Apr 15 2025 03:44:41 GMT+0100 (UTC+01:00)
+[debug] [2025-04-15T02:44:41.973Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-15T02:44:41.977Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-15T02:44:41.977Z] > authorizing via signed-in user (yassinkhlif08@gmail.com)
+[debug] [2025-04-15T02:44:41.983Z] Checked if tokens are valid: true, expires at: 1744688529823
+[debug] [2025-04-15T02:44:41.984Z] Checked if tokens are valid: true, expires at: 1744688529823
+[debug] [2025-04-15T02:44:41.984Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2025-04-15T02:44:41.985Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"drinkapp-angular","name":"DrinkApp"}
+[debug] [2025-04-15T02:44:42.986Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2025-04-15T02:44:42.986Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.5443204331131163215"}
+[debug] [2025-04-15T02:44:42.987Z] Checked if tokens are valid: true, expires at: 1744688529823
+[debug] [2025-04-15T02:44:42.987Z] Checked if tokens are valid: true, expires at: 1744688529823
+[debug] [2025-04-15T02:44:42.987Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5443204331131163215 [none]
+[debug] [2025-04-15T02:44:43.749Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5443204331131163215 200
+[debug] [2025-04-15T02:44:43.749Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.5443204331131163215 {"name":"operations/create_project.global.5443204331131163215","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","ready":true},"done":true,"error":{"code":9,"message":"Callers must accept Terms of Service","details":[{"@type":"type.googleapis.com/google.rpc.PreconditionFailure","violations":[{"type":"TOS","subject":"cloud","description":"Callers must accept Terms of Service"}]}]}}
+[debug] [2025-04-15T02:44:43.910Z] FirebaseError: Callers must accept Terms of Service
+    at OperationPoller.poll (C:\Users\YASSINE KHLIF\AppData\Roaming\npm\node_modules\firebase-tools\lib\operation-poller.js:24:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async createCloudProject (C:\Users\YASSINE KHLIF\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:213:29)
+    at async createFirebaseProjectAndLog (C:\Users\YASSINE KHLIF\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:71:9)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.

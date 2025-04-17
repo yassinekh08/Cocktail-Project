@@ -1,0 +1,42 @@
+<section class="light">
+  <div class="container py-2">
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">
+      <h1>Cocktail Categories</h1>
+    </div>
+
+    <div *ngIf="loading" class="loading">
+      Loading categories...
+    </div>
+
+    <div *ngIf="error" class="error">
+      {{ error }}
+    </div>
+
+    <article class="postcard light" *ngFor="let category of categories; let i = index" [ngClass]="getColor(i)">
+      <a class="postcard__img_link" href="#">
+        <img class="postcard__img" [src]="getCategoryImage(category.strCategory)" [alt]="category.strCategory" />
+      </a>
+      <div class="postcard__text t-dark">
+        <h1 class="postcard__title" [ngClass]="getColor(i)">
+          <a href="#">{{category.strCategory}}</a>
+        </h1>
+        <div class="postcard__subtitle small">
+          <span>
+            <i class="fas fa-glass-martini mr-2"></i>Cocktail Category
+          </span>
+        </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">
+          Explore our collection of {{category.strCategory}} cocktails. Find recipes, ingredients, and preparation methods.
+        </div>
+        <ul class="postcard__tagbox">
+          <li class="tag__item play" [ngClass]="getColor(i)">
+            <a [routerLink]="['/categories/cocktails']" [queryParams]="{category: category.strCategory}">
+              <i class="fas fa-cocktail mr-2"></i>View Drinks
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>

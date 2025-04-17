@@ -1,0 +1,39 @@
+<div class="cocktails-container">
+  <div class="category-header">
+    <h1>{{ category }} Cocktails</h1>
+    <div class="search-box">
+      <input
+        type="text"
+        [placeholder]="'Search ' + category + ' cocktails...'"
+        (input)="searchCocktails($event)"
+        class="search-input"
+      />
+      <i class="fas fa-search search-icon"></i>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading cocktails...
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && !error" class="content-section">
+    <div *ngIf="filteredCocktails.length === 0" class="no-results">
+      No cocktails found matching "{{ searchTerm }}". Try a different search term.
+    </div>
+
+    <div class="cocktails-grid" *ngIf="filteredCocktails.length > 0">
+      <div *ngFor="let cocktail of filteredCocktails" class="cocktail-card" [routerLink]="['/cocktail', cocktail.idDrink]">
+        <div class="cocktail-image">
+          <img [src]="cocktail.strDrinkThumb" [alt]="cocktail.strDrink">
+        </div>
+        <div class="cocktail-info">
+          <h2>{{ cocktail.strDrink }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

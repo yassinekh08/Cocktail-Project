@@ -1,0 +1,99 @@
+	<!--- Navbar --->
+	<nav class="navbar navbar-expand-lg">
+	<div class="container">
+		<a class="navbar-brand" routerLink="/">
+			<i class="fa-solid fa-champagne-glasses"></i>DrinkApp
+		</a>
+
+		<div class="d-flex align-items-center">
+			<!-- Home Link -->
+			<a class="nav-link me-3" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+				<i class="fa fa-home me-1"></i> Home
+			</a>
+
+			<!-- Contact Info -->
+			<div class="d-none d-lg-flex align-items-center me-3">
+				<a href="tel:(123) 456-7890" class="nav-link me-3">
+					<i class="fa fa-phone me-1"></i> (123) 456-7890
+				</a>
+				<a href="mailto:contact@drinkapp.com" class="nav-link">
+					<i class="fa fa-envelope me-1"></i> contact@drinkapp.com
+				</a>
+			</div>
+
+			<!-- Search Bar -->
+			<form class="d-flex me-3" (ngSubmit)="onSearch($event)">
+				<input 
+					class="form-control me-2" 
+					type="search" 
+					placeholder="Search cocktails..." 
+					[(ngModel)]="searchQuery"
+					name="search"
+				>
+				<button class="btn btn-outline-light" type="submit">
+					<i class="fa fa-search"></i>
+				</button>
+			</form>
+			<!-- Auth Buttons -->
+			<div class="auth-buttons">
+				<ng-container *ngIf="!isLoggedIn; else userMenu">
+					<a routerLink="/login" class="btn btn-outline-light me-2">
+						<i class="fa fa-sign-in me-1"></i> Login
+					</a>
+					<a routerLink="/signup" class="btn btn-primary">
+						<i class="fa fa-user-plus me-1"></i> Sign Up
+					</a>
+				</ng-container>
+
+				<ng-template #userMenu>
+					<div class="d-flex align-items-center">
+            <!-- User Dropdown -->
+            <div class="dropdown">
+              <button class="btn btn-outline-light dropdown-toggle" 
+                      type="button" 
+                      id="userDropdown" 
+                      data-bs-toggle="dropdown" 
+                      aria-expanded="false">
+                <i class="fa fa-user me-1"></i>
+                <span class="d-none d-sm-inline">{{ currentUser?.name || currentUser?.email }}</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li>
+                  <a class="dropdown-item" routerLink="/profile">
+                    <i class="fa fa-user-circle me-2"></i>Profile
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/favorites">
+                    <i class="fa fa-heart me-2"></i>Favorites
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <!-- Recent Activity Section -->
+                <li>
+                  <div class="dropdown-header">Recent Activity</div>
+                  <div class="recent-activity-scroll px-3" style="max-height: 200px; overflow-y: auto;">
+                    <div *ngFor="let activity of recentActivities" class="small py-1">
+                      <small class="text-muted">{{ activity.timestamp | date:'shortTime' }}</small>
+                      <span class="ms-2">{{ activity.message }}</span>
+                    </div>
+                    <div *ngIf="recentActivities.length === 0" class="text-muted small py-1">
+                      No recent activity
+                    </div>
+                  </div>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a class="dropdown-item" (click)="logout()" style="cursor: pointer;">
+                    <i class="fa fa-sign-out me-2"></i>Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+					</div>
+				</ng-template>
+			</div>
+		</div>
+	</div>
+</nav>

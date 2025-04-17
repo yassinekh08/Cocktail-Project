@@ -1,0 +1,27 @@
+<div class="search-results-container">
+  <h2 class="search-header">Search Results for "{{ searchQuery }}"</h2>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Searching for cocktails...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="noResults" class="no-results">
+    <p>No cocktails found matching "{{ searchQuery }}"</p>
+  </div>
+
+  <div *ngIf="!loading && !error && searchResults.length > 0" class="results-grid">
+    <a *ngFor="let cocktail of searchResults" class="cocktail-card" [routerLink]="['/cocktail', cocktail.idDrink]">
+      <img [src]="cocktail.strDrinkThumb" [alt]="cocktail.strDrink" class="cocktail-image">
+      <div class="cocktail-info">
+        <h3>{{ cocktail.strDrink }}</h3>
+        <p class="glass-type">{{ cocktail.strGlass }}</p>
+        <p class="category">{{ cocktail.strCategory }}</p>
+      </div>
+    </a>
+  </div>
+</div>

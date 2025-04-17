@@ -1,0 +1,47 @@
+<div class="favorites-container">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">My Favorite Cocktails</h2>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3">Loading your favorites...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="error alert alert-danger">
+      <i class="fa fa-exclamation-circle me-2"></i>
+      {{ error }}
+    </div>
+
+    <!-- Content -->
+    <div *ngIf="!loading && !error" class="cocktails-grid">
+      <!-- No Favorites -->
+      <div *ngIf="favoriteCocktails.length === 0" class="no-favorites">
+        <i class="fa fa-heart-o mb-3" style="font-size: 3rem;"></i>
+        <p class="mb-4">You haven't added any cocktails to your favorites yet.</p>
+        <a routerLink="/categories" class="btn btn-primary">
+          <i class="fa fa-glass me-2"></i>Browse Cocktails
+        </a>
+      </div>
+
+      <!-- Favorite Cocktails -->
+      <div *ngFor="let cocktail of favoriteCocktails" class="cocktail-card">
+        <img [src]="cocktail.strDrinkThumb" [alt]="cocktail.strDrink" class="cocktail-image">
+        <div class="cocktail-info">
+          <h3>{{ cocktail.strDrink }}</h3>
+          <div class="actions">
+            <a [routerLink]="['/cocktail', cocktail.idDrink]" class="view-btn">
+              <i class="fa fa-eye me-2"></i>View Details
+            </a>
+            <button (click)="removeFromFavorites(cocktail.idDrink)" class="remove-btn">
+              <i class="fa fa-trash me-2"></i>Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
